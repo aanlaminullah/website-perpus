@@ -504,11 +504,151 @@ body {
     height: auto;
 }
 
+/* ================== LOGIN PAGE ================== */
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.4s ease-in-out;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-logo {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 8px;
+}
+
+.forgot-password,
+.register-link {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover,
+.register-link:hover {
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    transform: translateY(-2px);
+}
+
+.login-footer {
+    margin-top: 25px;
+}
+
+.login-footer p {
+    color: #666;
+    font-size: 14px;
+}
+
 /* ================== RESPONSIVE ================== */
 @media (max-width: 768px) {
     .header-top {
-        flex-direction: column;
-        gap: 20px;
+        /* This rule has been removed to fix the layout issue on mobile */
+        /* flex-direction: column; */
+        /* gap: 20px; */
     }
 
     .hero-section {
@@ -577,7 +717,7 @@ body {
         }
     }
 
-    /* ✅ tampilkan hamburger di mobile */
+    /* This is the corrected rule that makes the hamburger visible on mobile. */
     .hamburger {
         display: flex;
     }
@@ -606,5 +746,13 @@ body {
 
     .nav-menu a {
         font-size: 14px;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
     }
 }

@@ -28,8 +28,7 @@
                 <a href="#profil">Profil</a>
                 <a href="#berita">Berita</a>
             </nav>
-            <!-- Tombol hamburger -->
-            <div class="hamburger" onclick="toggleMenu()">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -319,19 +318,15 @@
             }
         });
 
+        // This is the corrected JavaScript logic for the hamburger menu
         const hamburger = document.getElementById("hamburger");
         const navMenu = document.querySelector(".nav-menu");
 
         hamburger.addEventListener("click", () => {
             navMenu.classList.toggle("active");
+            hamburger.classList.toggle("active"); // Added this line to apply the 'active' class to the hamburger
         });
-
-        function toggleMenu() {
-            const navMenu = document.querySelector(".nav-menu");
-            const hamburger = document.querySelector(".hamburger");
-            navMenu.classList.toggle("active");
-            hamburger.classList.toggle("active");
-        }
+        // The 'toggleMenu' function is no longer needed since the event listener handles the logic
     </script>
 </body>
 
