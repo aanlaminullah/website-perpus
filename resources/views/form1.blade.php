@@ -45,48 +45,7 @@
     </aside>
 
     <main class="main-content">
-        <h2 class="dashboard-title">Tambah Data Buku</h2>
 
-        <div class="form-card">
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="judul">Judul Buku</label>
-                    <input type="text" id="judul" name="judul" placeholder="Masukkan judul buku" required>
-                </div>
-                <div class="form-group">
-                    <label for="penulis">Penulis</label>
-                    <input type="text" id="penulis" name="penulis" placeholder="Masukkan nama penulis" required>
-                </div>
-                <div class="form-group">
-                    <label for="penerbit">Penerbit</label>
-                    <input type="text" id="penerbit" name="penerbit" placeholder="Masukkan nama penerbit">
-                </div>
-                <div class="form-group">
-                    <label for="tahun">Tahun Terbit</label>
-                    <input type="number" id="tahun" name="tahun" placeholder="Contoh: 2023" min="1900"
-                        max="2100">
-                </div>
-                <div class="form-group">
-                    <label for="kategori">Kategori</label>
-                    <select id="kategori" name="kategori">
-                        <option value="">Pilih Kategori</option>
-                        <option value="sejarah">Sejarah</option>
-                        <option value="fiksi">Fiksi</option>
-                        <option value="ilmiah">Ilmiah</option>
-                        <option value="teknologi">Teknologi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Tulis deskripsi singkat tentang buku"></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
     </main>
 
     <script>
