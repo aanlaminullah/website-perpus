@@ -12,30 +12,7 @@
 
 
 <body>
-    <header class="header">
-        <div class="header-top">
-            <div class="logo-section">
-                <div class="logo">
-                    <img src="logo-pemda.png" alt="Logo">
-                </div>
-                <div>
-                    <div class="site-title">Dinas Kearsipan dan Perpustakaan</div>
-                    <div class="tagline">Pelayanan Informasi dan Dokumentasi Terpadu</div>
-                </div>
-            </div>
-            <nav class="nav-menu">
-                <a href="#beranda">Beranda</a>
-                <a href="#layanan">Layanan</a>
-                <a href="#profil">Profil</a>
-                <a href="#berita">Berita</a>
-            </nav>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
+    @include('partials.navbar')
 
 
     <main>
@@ -136,27 +113,26 @@
                 <div class="profil-box">
                     <h3>Visi & Misi</h3>
                     <p>
-                        Visi: "Mewujudkan layanan kearsipan dan perpustakaan yang modern, inklusif, dan berdaya guna
-                        untuk mendukung tata kelola pemerintahan yang baik."
+                        Visi: "{{ $visiMisi->visi }}"
                     </p>
+                    <br>
+                    <p>Misi:</p>
                     <ul>
-                        <li>Meningkatkan kualitas pengelolaan arsip.</li>
-                        <li>Mendorong literasi informasi dan membaca masyarakat.</li>
-                        <li>Mengembangkan sistem layanan berbasis teknologi.</li>
+                        @foreach (json_decode($visiMisi->misi) as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="profil-box">
                     <h3>Tugas & Fungsi</h3>
                     <p>
-                        Dinas Kearsipan dan Perpustakaan mempunyai tugas melaksanakan urusan pemerintahan daerah di
-                        bidang
-                        kearsipan dan perpustakaan.
+                        {{ $tugasFungsi->tugas }}
                     </p>
+                    <br>
                     <ul>
-                        <li>Perumusan kebijakan teknis bidang kearsipan dan perpustakaan.</li>
-                        <li>Penyelenggaraan urusan pemerintahan & pelayanan publik.</li>
-                        <li>Pengelolaan arsip dinamis dan statis.</li>
-                        <li>Penyediaan layanan informasi dan literasi.</li>
+                        @foreach (json_decode($tugasFungsi->fungsi) as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -241,7 +217,7 @@
             <div class="footer-section">
                 <h3>Tautan</h3>
                 <ul>
-                    <li><a href="#">Portal Lumajang</a></li>
+                    <li><a href="#">Portal Boltara</a></li>
                     <li><a href="#">PPID</a></li>
                     <li><a href="#">E-Government</a></li>
                     <li><a href="#">Perpusnas RI</a></li>
@@ -251,7 +227,7 @@
         </div>
         <div class="footer-bottom">
             <p>
-                &copy; 2024 Dinas Kearsipan dan Perpustakaan Kabupaten Lumajang. All
+                &copy; 2024 Dinas Kearsipan dan Perpustakaan Kabupaten Bolaang Mongondow Utara. All
                 Rights Reserved.
             </p>
         </div>

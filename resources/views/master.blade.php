@@ -22,48 +22,69 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Logika untuk menampilkan/menyembunyikan submenu
-        document.addEventListener('DOMContentLoaded', () => {
-            const dropdowns = document.querySelectorAll('.dropdown');
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const dropdowns = document.querySelectorAll('.dropdown');
 
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', (event) => {
-                    const submenu = dropdown.querySelector('.submenu');
-                    if (submenu) {
-                        event.preventDefault();
-                        dropdown.classList.toggle('active');
-                    }
-                });
-            });
+        //     dropdowns.forEach(dropdown => {
+        //         dropdown.addEventListener('click', (event) => {
+        //             const submenu = dropdown.querySelector('.submenu');
+        //             if (submenu) {
+        //                 event.preventDefault();
+        //                 dropdown.classList.toggle('active');
+        //             }
+        //         });
+        //     });
 
-            // Data dummy untuk grafik, diubah menjadi 12 bulan
-            const chartData = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
-                datasets: [{
-                    label: 'Peminjaman Buku',
-                    data: [150, 200, 180, 250, 220, 300, 280, 320, 310, 290, 350, 400],
-                    backgroundColor: '#3498db',
-                    borderColor: '#2980b9',
-                    borderWidth: 1
-                }]
-            };
+        // Data dummy untuk grafik, diubah menjadi 12 bulan
+        const chartData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+            datasets: [{
+                label: 'Peminjaman Buku',
+                data: [150, 200, 180, 250, 220, 300, 280, 320, 310, 290, 350, 400],
+                backgroundColor: '#3498db',
+                borderColor: '#2980b9',
+                borderWidth: 1
+            }]
+        };
 
-            // Konfigurasi dan pembuatan grafik
-            const ctx = document.getElementById('peminjamanChart').getContext('2d');
-            const peminjamanChart = new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+        // Konfigurasi dan pembuatan grafik
+        const ctx = document.getElementById('peminjamanChart').getContext('2d');
+        const peminjamanChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".dropdown-toggle").forEach(function(toggle) {
+                toggle.addEventListener("click", function(e) {
+                    e.preventDefault();
+
+                    // tutup semua dropdown lain
+                    document.querySelectorAll(".sidebar-nav li.dropdown").forEach(function(li) {
+                        if (li !== toggle.parentElement) {
+                            li.classList.remove("active");
+                        }
+                    });
+
+                    // toggle dropdown yang diklik
+                    toggle.parentElement.classList.toggle("active");
+                });
             });
         });
     </script>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
