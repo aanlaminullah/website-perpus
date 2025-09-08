@@ -462,7 +462,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -1535,6 +1535,90 @@ body.admin-dashboard {
 
 .carousel-dot.active {
     background-color: #3498db;
+}
+
+.org-chart {
+    padding: 20px;
+}
+
+.org-chart ul {
+    /* Set position to relative for the li::before absolute positioning */
+    position: relative;
+    padding-left: 0; /* Keep this at 0 for the main ul */
+    margin: 0;
+}
+
+.org-chart li {
+    list-style: none;
+    margin: 12px 0;
+    position: relative; /* Essential for positioning the ::before pseudo-elements */
+}
+
+/* Vertical line for all children, except the first child of the first ul */
+.org-chart ul li::before {
+    content: "";
+    position: absolute;
+    left: -20px; /* Adjust this value to control the line's position */
+    top: 0;
+    border-left: 1px solid #ccc; /* Vertical line color and style */
+    width: 0;
+    height: 100%;
+}
+
+/* Horizontal line connecting to the node box */
+.org-chart ul li::after {
+    content: "";
+    position: absolute;
+    left: -20px; /* Aligns with the vertical line */
+    top: 15px; /* Adjust to align with the middle of the node-box */
+    border-top: 1px solid #ccc; /* Horizontal line color and style */
+    width: 20px; /* Length of the horizontal line */
+    height: 0;
+}
+
+/* Remove horizontal line for the root node, if applicable (usually the first li in the main ul) */
+.org-chart > ul > li::after {
+    border-top: none;
+}
+
+/* Adjust the vertical line for the last child to stop at its node */
+.org-chart ul li:last-child::before {
+    height: 15px; /* Adjust to match the top of the node-box */
+}
+
+/* For nested ul, add padding to shift them right, making space for the lines */
+.org-chart li ul {
+    padding-left: 20px; /* Indent nested lists to make space for lines */
+    position: relative; /* Needed for its children's ::before positioning */
+}
+
+/* Style for the node-box remains the same */
+.node-box {
+    display: inline-flex; /* Use flex for better alignment of icon and text */
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.node-box i {
+    margin-right: 6px;
+    color: #2c3e50;
+}
+
+.node-box strong {
+    font-weight: 600;
+    margin-right: 6px;
+    color: #333;
+}
+
+.node-box .nama {
+    color: #2980b9;
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {

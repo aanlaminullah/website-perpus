@@ -22,6 +22,7 @@
                 <ul class="submenu">
                     <li><a href="{{ route('visimisi.index') }}">Visi Misi</a></li>
                     <li><a href="{{ route('tugasfungsi.index') }}">Tugas dan Fungsi</a></li>
+                    <li><a href="{{ route('struktur.index') }}">Struktur Organisasi</a></li>
                 </ul>
             </li>
             {{-- <li><a href="#">Laporan</a></li>

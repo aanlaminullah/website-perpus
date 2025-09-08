@@ -7,6 +7,8 @@
     <title>Dinas Kearsipan dan Perpustakaan</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="icon" href="logo-pemda.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -124,6 +126,12 @@
                     </ul>
                 </div>
                 <div class="profil-box">
+                    <h3>Struktur Organisasi</h3>
+                    <div class="org-chart">
+                        @include('partials.struktur-tree', ['struktur' => $struktur])
+                    </div>
+                </div>
+                <div class="profil-box">
                     <h3>Tugas & Fungsi</h3>
                     <p>
                         {{ $tugasFungsi->tugas }}
@@ -135,6 +143,7 @@
                         @endforeach
                     </ul>
                 </div>
+
             </div>
         </section>
 
