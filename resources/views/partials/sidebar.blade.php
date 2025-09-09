@@ -6,40 +6,48 @@
             </div>
             <div>
                 <div class="site-title">Dashboard Admin</div>
-                <div class="tagline">Disarpus Kab. Boltara
-                </div>
+                <div class="tagline">Disarpus Kab. Boltara</div>
             </div>
         </div>
     </a>
     <nav class="sidebar-nav">
         <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="{{ route('buku.index') }}">Buku</a></li>
-            <li class="dropdown">
+            <li class="{{ Request::routeIs('dashboard') ? 'active' : '' }}">
+                <a href="/dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="{{ Request::routeIs('buku.*') ? 'active' : '' }}">
+                <a href="{{ route('buku.index') }}">
+                    <i class="fas fa-book"></i> Buku
+                </a>
+            </li>
+            <li
+                class="dropdown {{ Request::routeIs('visimisi.index') || Request::routeIs('tugasfungsi.index') || Request::routeIs('struktur.index') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="dropdown-toggle">
-                    Edit
+                    <i class="fas fa-edit"></i> Edit
                 </a>
                 <ul class="submenu">
-                    <li><a href="{{ route('visimisi.index') }}">Visi Misi</a></li>
-                    <li><a href="{{ route('tugasfungsi.index') }}">Tugas dan Fungsi</a></li>
-                    <li><a href="{{ route('struktur.index') }}">Struktur Organisasi</a></li>
+                    <li class="{{ Request::routeIs('visimisi.index') ? 'active' : '' }}">
+                        <a href="{{ route('visimisi.index') }}">Visi Misi</a>
+                    </li>
+                    <li class="{{ Request::routeIs('tugasfungsi.index') ? 'active' : '' }}">
+                        <a href="{{ route('tugasfungsi.index') }}">Tugas dan Fungsi</a>
+                    </li>
+                    <li class="{{ Request::routeIs('struktur.index') ? 'active' : '' }}">
+                        <a href="{{ route('struktur.index') }}">Struktur Organisasi</a>
+                    </li>
                 </ul>
             </li>
-            {{-- <li><a href="#">Laporan</a></li>
-            <li class="dropdown" id="dataDropdown">
-                <a href="#" class="dropdown-toggle">Data <span class="arrow">▼</span></a>
-                <ul class="submenu">
-                    <li><a href="#">Buku</a></li>
-                    <li><a href="#">Anggota</a></li>
-                </ul>
-            </li>
-            <li class="dropdown" id="settingsDropdown">
-                <a href="#" class="dropdown-toggle">Pengaturan <span class="arrow">▼</span></a>
-                <ul class="submenu">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Sistem</a></li>
-                </ul>
-            </li> --}}
+
         </ul>
     </nav>
+    <div class="sidebar-footer">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </form>
+    </div>
 </aside>
