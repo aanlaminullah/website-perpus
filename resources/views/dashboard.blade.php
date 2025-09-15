@@ -40,21 +40,28 @@
                         <div class="activity-icon">📚</div>
                         <div class="activity-details">
                             <h4>Sejarah Kota Lumajang</h4>
-                            <p>Dipinjam 520 kali</p>
+                            <p>Penulis: S.W. Sudarmono</p>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-icon">💾</div>
+                        <div class="activity-details">
+                            <h4>Rencana Strategis 2024</h4>
+                            <p>Arsip: Kantor Bupati</p>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-icon">⬅️</div>
+                        <div class="activity-details">
+                            <h4>Pengembalian Buku</h4>
+                            <p>Judul: Kebijakan Publik 2024</p>
                         </div>
                     </li>
                     <li class="activity-item">
                         <div class="activity-icon">📚</div>
                         <div class="activity-details">
-                            <h4>Metode Kearsipan Modern</h4>
-                            <p>Dipinjam 485 kali</p>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon">📚</div>
-                        <div class="activity-details">
-                            <h4>Literasi Digital Untuk Semua</h4>
-                            <p>Dipinjam 410 kali</p>
+                            <h4>Pemuda dan Perubahan Sosial</h4>
+                            <p>Penulis: A. Rahman</p>
                         </div>
                     </li>
                 </ul>
@@ -68,7 +75,7 @@
                     <li class="activity-item">
                         <div class="activity-icon">➡️</div>
                         <div class="activity-details">
-                            <h4>Anggota baru bergabung</h4>
+                            <h4>Pendaftaran Anggota Baru</h4>
                             <p>Nama: Budi Santoso</p>
                         </div>
                     </li>
@@ -95,13 +102,14 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
 
-    <div>
-        <section class="widget-card">
-            <h3>Catatan</h3>
-            <p>Selamat datang di dashboard admin Dinas Kearsipan dan Perpustakaan Kabupaten Lumajang. Gunakan
-                navigasi di sebelah kiri untuk mengelola data, melihat laporan, dan mengatur sistem.</p>
+            <div class="widget-card">
+                <h3>Catatan</h3>
+                <p>
+                    Selamat datang di dashboard admin Dinas Kearsipan dan Perpustakaan Kabupaten Lumajang.
+                    Gunakan navigasi di sebelah kiri untuk mengelola data, melihat laporan, dan mengatur sistem.
+                </p>
+            </div>
+        </div>
     </div>
 @endsection

@@ -10,11 +10,11 @@
                 </div>
             </div>
             <nav class="nav-menu">
-                <a href="/dashboard">Dashboard</a>
                 <a href="#beranda">Beranda</a>
                 <a href="#layanan">Layanan</a>
                 <a href="#profil">Profil</a>
                 <a href="#berita">Berita</a>
+                <a href="/dashboard">Dashboard</a>
             </nav>
             <div class="hamburger" id="hamburger">
                 <span></span>

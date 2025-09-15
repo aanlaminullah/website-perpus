@@ -16,6 +16,11 @@
 
     @include('partials.sidebar')
 
+    <!-- Tombol hamburger -->
+    <button id="hamburgerBtn" class="hamburger-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <main class="main-content">
         @yield('content')
     </main>
@@ -82,7 +87,22 @@
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+
+            hamburgerBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                if (window.innerWidth <= 768) {
+                    mainContent.classList.toggle('expanded');
+                }
+            });
+        });
     </script>
+
+
 
 
 

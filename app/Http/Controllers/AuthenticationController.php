@@ -10,28 +10,18 @@ use Illuminate\Validation\ValidationException;
 
 class AuthenticationController extends Controller
 {
-    /**
-     * Menampilkan halaman login.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function showLogin()
     {
         return view('auth.login');
     }
 
 
-    /**
-     * Memproses permintaan login.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function login(Request $request)
     {
         // Validasi input
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'name' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -44,30 +34,11 @@ class AuthenticationController extends Controller
 
         // Jika otentikasi gagal
         throw ValidationException::withMessages([
-            'email' => 'Username atau password salah.',
+            'name' => 'Username atau password salah.',
         ]);
     }
 
 
-
-    /**
-     * Menampilkan halaman register.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
-
-
-    /**
-     * Memproses permintaan register.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function register(Request $request)
     {
         // Validasi input
@@ -91,13 +62,6 @@ class AuthenticationController extends Controller
     }
 
 
-
-    /**
-     * Memproses permintaan logout.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function logout(Request $request)
     {
         Auth::logout();
@@ -106,5 +70,35 @@ class AuthenticationController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/')->with('success', 'Anda berhasil keluar!');
+    }
+
+
+    public function showChangePassword()
+    {
+        return view('auth.changepassword');
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = Auth::user();
+
+        // Cek apakah password lama sesuai
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors([
+                'current_password' => 'Password lama tidak sesuai.',
+            ]);
+        }
+
+        // Update password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('dashboard')->with('success', 'Password berhasil diperbarui!');
     }
 }

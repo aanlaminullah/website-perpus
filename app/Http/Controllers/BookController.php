@@ -71,6 +71,12 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Cari buku berdasarkan ID
+        $book = Book::findOrFail($id);
+
+        // Hapus buku
+        $book->delete();
+
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus!');
     }
 }

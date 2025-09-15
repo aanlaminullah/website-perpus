@@ -35,11 +35,11 @@
                         <td>{{ $b->year }}</td>
                         <td>
                             <a href="#" class="btn btn-info btn-sm">View</a>
-                            <form action="#" method="POST" class="d-inline">
+                            <form action="{{ route('buku.destroy', $b->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                    onclick="return confirm('Anda yakin menghapus data ini ?');">Delete</button>
                             </form>
                         </td>
                     </tr>

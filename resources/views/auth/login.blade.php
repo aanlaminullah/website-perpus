@@ -37,25 +37,22 @@
             <form action="/login" method="POST" class="login-form">
                 @csrf
                 <div class="input-group">
-                    <label for="email">Email atau Username</label>
-                    <input type="text" id="email" name="email" placeholder="Masukkan email atau username"
-                        value="{{ old('email') }}" required>
+                    <label for="email">Username</label>
+                    <input type="text" id="name" name="name" placeholder="Masukkan username"
+                        value="{{ old('name') }}" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Masukkan password" required>
                 </div>
-                <div class="form-options">
+                {{-- <div class="form-options">
                     <div class="remember-me">
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Ingat saya</label>
                     </div>
-                </div>
+                </div> --}}
                 <button type="submit" class="login-button">Masuk</button>
             </form>
-            <div class="login-footer">
-                <p>Belum punya akun? <a href="{{ route('register') }}" class="register-link">Daftar disini</a></p>
-            </div>
         </div>
     </div>
 

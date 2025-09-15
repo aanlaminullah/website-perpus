@@ -15,7 +15,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::middleware(['guest.only'])->group(function () {
     Route::get('/login', [AuthenticationController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthenticationController::class, 'login']);
-    Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
+    // Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthenticationController::class, 'register']);
 });
 
@@ -31,6 +31,7 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/', [BookController::class, 'index'])->name('buku.index');
         Route::post('/', [BookController::class, 'store'])->name('buku.store');
         Route::get('/create', [BookController::class, 'create'])->name('buku.create');
+        Route::delete('/{id}', [BookController::class, 'destroy'])->name('buku.destroy');
     });
 
     // Visi Misi
@@ -48,5 +49,10 @@ Route::middleware(['auth.check'])->group(function () {
     Route::post('/dashboard/struktur', [StrukturController::class, 'store'])->name('struktur.store');
     Route::put('/dashboard/struktur/{struktur}', [StrukturController::class, 'update'])->name('struktur.update');
 
+    // Ganti Password
+    Route::get('/dashboard/ganti-password', [AuthenticationController::class, 'showChangePassword'])->name('password.edit');
+    Route::put('/dashboard/ganti-password', [AuthenticationController::class, 'updatePassword'])->name('password.update');
+
+    // Logout
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 });

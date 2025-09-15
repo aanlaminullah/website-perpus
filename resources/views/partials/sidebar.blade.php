@@ -40,6 +40,20 @@
                 </ul>
             </li>
 
+            <li class="dropdown {{ Request::routeIs('password.edit') ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="dropdown-toggle">
+                    <i class="fa-solid fa-gear"></i> Pengaturan
+                </a>
+                <ul class="submenu">
+                    <li class="{{ Request::routeIs('password.edit') ? 'active' : '' }}">
+                        <a href="{{ route('password.edit') }}">
+                            <i class="fa-solid fa-key"></i> Ubah Password
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
         </ul>
     </nav>
     <div class="sidebar-footer">

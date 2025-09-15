@@ -20,10 +20,10 @@
                 <label for="kategori">Kategori</label>
                 <select id="category" name="category">
                     <option value="">Pilih Kategori</option>
-                    <option value="sejarah">Sejarah</option>
-                    <option value="fiksi">Fiksi</option>
-                    <option value="ilmiah">Ilmiah</option>
-                    <option value="teknologi">Teknologi</option>
+                    <option value="Sejarah">Sejarah</option>
+                    <option value="Fiksi">Fiksi</option>
+                    <option value="Ilmiah">Ilmiah</option>
+                    <option value="Teknologi">Teknologi</option>
                 </select>
             </div>
             <div class="form-group">
