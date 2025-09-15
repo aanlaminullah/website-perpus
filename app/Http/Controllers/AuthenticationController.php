@@ -99,6 +99,6 @@ class AuthenticationController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->route('dashboard')->with('success', 'Password berhasil diperbarui!');
+        return redirect()->route('password.edit')->with('success', 'Password berhasil diperbarui!');
     }
 }

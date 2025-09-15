@@ -6,6 +6,14 @@
     <h2 class="dashboard-title">Ganti Password</h2>
 
     <div class="form-card">
+        {{-- Notifikasi sukses --}}
+        @if (session('success'))
+            <div class="alert alert-success" style="margin-bottom:20px;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- Notifikasi error --}}
         @if ($errors->any())
             <div class="alert alert-danger" style="margin-bottom:20px;">
                 <ul style="margin:0; padding-left:18px;">

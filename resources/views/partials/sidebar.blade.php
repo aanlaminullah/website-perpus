@@ -47,7 +47,7 @@
                 <ul class="submenu">
                     <li class="{{ Request::routeIs('password.edit') ? 'active' : '' }}">
                         <a href="{{ route('password.edit') }}">
-                            <i class="fa-solid fa-key"></i> Ubah Password
+                            Ubah Password
                         </a>
                     </li>
                 </ul>
