@@ -16,7 +16,7 @@ Route::middleware(['guest.only'])->group(function () {
     Route::get('/login', [AuthenticationController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthenticationController::class, 'login']);
     // Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthenticationController::class, 'register']);
+    // Route::post('/register', [AuthenticationController::class, 'register']);
 });
 
 // Rute yang memerlukan otentikasi

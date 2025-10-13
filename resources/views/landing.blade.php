@@ -197,10 +197,11 @@
             <div class="footer-section">
                 <h3>Kontak Kami</h3>
                 <div class="contact-info">
-                    <p>📍 Jl. Merdeka No. 123<br />Kota Lumajang, Jawa Timur</p>
+                    <p>📍 Jl. Trans Sulawesi<br />Kab. Bolaang Mongondow Utara</p>
                     <p>📞 (0334) 123-4567</p>
-                    <p>✉️ info@disarpus.lumajang.go.id</p>
-                    <p>🕒 Senin - Jumat: 08:00 - 16:00</p>
+                    <p>✉️ info@dkpd.boltarakab.go.id</p>
+                    <p>🕒 Senin - Kamis : 08:00 - 16:30</p>
+                    <p>🕒 Jumat : 08:00 - 11:30</p>
                 </div>
             </div>
             <div class="footer-section">
