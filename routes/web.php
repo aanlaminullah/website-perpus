@@ -8,6 +8,7 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\TugasFungsiController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\LensaKegiatanController;
+use App\Http\Controllers\LandingStatController;
 
 // Landing page
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -23,9 +24,8 @@ Route::middleware(['guest.only'])->group(function () {
 // Rute yang memerlukan otentikasi
 Route::middleware(['auth.check'])->group(function () {
     // Dashboard home
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [LandingStatController::class, 'index'])->name('dashboard');
+    Route::put('/dashboard/stats', [LandingStatController::class, 'update'])->name('stats.update');
 
     // CRUD Buku
     Route::prefix('dashboard/buku')->group(function () {

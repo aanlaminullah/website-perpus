@@ -36,19 +36,20 @@
 
         <section class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number">15,450</div>
+                {{-- Tambahkan data-target --}}
+                <div class="stat-number" data-target="{{ $stats->koleksi_buku ?? 0 }}">0</div>
                 <div class="stat-label">Koleksi Buku</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">8,230</div>
+                <div class="stat-number" data-target="{{ $stats->dokumen_arsip ?? 0 }}">0</div>
                 <div class="stat-label">Dokumen Arsip</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">2,150</div>
+                <div class="stat-number" data-target="{{ $stats->anggota_aktif ?? 0 }}">0</div>
                 <div class="stat-label">Anggota Aktif</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">35</div>
+                <div class="stat-number" data-target="{{ $stats->buku_dibaca ?? 0 }}">0</div>
                 <div class="stat-label">Jumlah Buku Dibaca</div>
             </div>
         </section>
@@ -312,13 +313,13 @@
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const statNumbers = entry.target.querySelectorAll(".stat-number");
-                    // UPDATE: Tambahkan angka 35 ke dalam array targets
-                    const targets = [15450, 8230, 2150, 35];
 
-                    statNumbers.forEach((num, index) => {
-                        // Cek agar index tidak error jika HTML bertambah
-                        if (targets[index] !== undefined) {
-                            animateCounter(num, targets[index]);
+                    statNumbers.forEach((num) => {
+                        // Ambil target angka dari atribut data-target yang kita buat di HTML
+                        const target = parseInt(num.getAttribute('data-target'));
+
+                        if (!isNaN(target)) {
+                            animateCounter(num, target);
                         }
                     });
                     observer.unobserve(entry.target);

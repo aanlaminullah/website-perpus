@@ -6,11 +6,16 @@
     <h2 class="dashboard-title">Manajemen Statistik Beranda</h2>
 
     <div class="form-card">
-        <div class="alert alert-success" style="display: none; margin-bottom: 20px;">
-            <i class="fas fa-check-circle"></i> Data berhasil diperbarui (Simulasi)
-        </div>
+        @if (session('success'))
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
+            </div>
+        @endif
 
-        <form>
+        <form action="{{ route('stats.update') }}" method="POST">
+            @csrf
+            @method('PUT')
+
             <div class="stats-edit-grid">
 
                 <div class="form-group">
@@ -18,9 +23,9 @@
                         <i class="fas fa-book" style="color: #3498db; margin-right: 5px;"></i>
                         Total Koleksi Buku
                     </label>
-                    <input type="number" id="koleksi_buku" name="koleksi_buku" value="15450"
-                        placeholder="Masukkan jumlah buku...">
-                    <small style="color: #666; font-size: 12px;">Angka saat ini: 15,450</small>
+                    <input type="number" id="koleksi_buku" name="koleksi_buku"
+                        value="{{ old('koleksi_buku', $stats->koleksi_buku ?? 0) }}" placeholder="Masukkan jumlah buku..."
+                        required>
                 </div>
 
                 <div class="form-group">
@@ -28,9 +33,9 @@
                         <i class="fas fa-archive" style="color: #27ae60; margin-right: 5px;"></i>
                         Total Dokumen Arsip
                     </label>
-                    <input type="number" id="dokumen_arsip" name="dokumen_arsip" value="8230"
-                        placeholder="Masukkan jumlah arsip...">
-                    <small style="color: #666; font-size: 12px;">Angka saat ini: 8,230</small>
+                    <input type="number" id="dokumen_arsip" name="dokumen_arsip"
+                        value="{{ old('dokumen_arsip', $stats->dokumen_arsip ?? 0) }}"
+                        placeholder="Masukkan jumlah arsip..." required>
                 </div>
 
                 <div class="form-group">
@@ -38,9 +43,9 @@
                         <i class="fas fa-users" style="color: #e74c3c; margin-right: 5px;"></i>
                         Jumlah Anggota Aktif
                     </label>
-                    <input type="number" id="anggota_aktif" name="anggota_aktif" value="2150"
-                        placeholder="Masukkan jumlah anggota...">
-                    <small style="color: #666; font-size: 12px;">Angka saat ini: 2,150</small>
+                    <input type="number" id="anggota_aktif" name="anggota_aktif"
+                        value="{{ old('anggota_aktif', $stats->anggota_aktif ?? 0) }}"
+                        placeholder="Masukkan jumlah anggota..." required>
                 </div>
 
                 <div class="form-group">
@@ -48,42 +53,23 @@
                         <i class="fas fa-book-reader" style="color: #f39c12; margin-right: 5px;"></i>
                         Jumlah Buku Dibaca
                     </label>
-                    <input type="number" id="buku_dibaca" name="buku_dibaca" value="35"
-                        placeholder="Masukkan jumlah dibaca...">
-                    <small style="color: #666; font-size: 12px;">Angka saat ini: 35</small>
+                    <input type="number" id="buku_dibaca" name="buku_dibaca"
+                        value="{{ old('buku_dibaca', $stats->buku_dibaca ?? 0) }}" placeholder="Masukkan jumlah dibaca..."
+                        required>
                 </div>
 
             </div>
 
             <div class="form-actions" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-                <button type="button" class="btn btn-secondary" onclick="window.location.reload()">Batal</button>
-                <button type="button" class="btn btn-primary" onclick="simpanData()">
+                {{-- Tombol Batal reload page --}}
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary"
+                    style="text-decoration:none; display:inline-block; text-align:center;">Batal</a>
+
+                {{-- Tombol Submit Form --}}
+                <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
             </div>
         </form>
     </div>
-
-    <script>
-        // Script sederhana untuk simulasi tombol simpan
-        function simpanData() {
-            const btn = document.querySelector('.btn-primary');
-            const alert = document.querySelector('.alert');
-
-            // Efek Loading
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                alert.style.display = 'block';
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }, 1000);
-        }
-    </script>
 @endsection
