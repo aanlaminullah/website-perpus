@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Edit Tugas dan Fungsi - Dinas Kearsipan dan Perpustakaan')
+@section('title', 'Edit Struktur Organisasi - Dinas Kearsipan dan Perpustakaan')
 
 @section('content')
     <h2 class="dashboard-title">Edit Struktur Organisasi</h2>

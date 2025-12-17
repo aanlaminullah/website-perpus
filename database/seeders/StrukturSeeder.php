@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Struktur;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class StrukturSeeder extends Seeder
 {
@@ -12,18 +13,18 @@ class StrukturSeeder extends Seeder
      */
     public function run(): void
     {
-        $kepala = \App\Models\Struktur::create([
+        $kepala = Struktur::create([
             'nama' => 'Budi',
             'jabatan' => 'Kepala Dinas'
         ]);
 
-        $sekretaris = \App\Models\Struktur::create([
+        $sekretaris = Struktur::create([
             'nama' => 'Siti',
             'jabatan' => 'Sekretaris',
             'parent_id' => $kepala->id
         ]);
 
-        \App\Models\Struktur::create([
+        Struktur::create([
             'nama' => 'Andi',
             'jabatan' => 'Kasubbag Umum',
             'parent_id' => $sekretaris->id

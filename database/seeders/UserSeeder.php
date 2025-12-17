@@ -14,18 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        // 1. Contoh satu user (Admin Utama)
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('password'), // Password di-hash
+            'password' => Hash::make('password'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        // ---
 
-        // 2. Contoh beberapa user sampel (Menggunakan array)
         $users = [
             [
                 'name' => 'adminperpus',
