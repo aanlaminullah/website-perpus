@@ -47,6 +47,10 @@
                 <div class="stat-number">2,150</div>
                 <div class="stat-label">Anggota Aktif</div>
             </div>
+            <div class="stat-item">
+                <div class="stat-number">35</div>
+                <div class="stat-label">Jumlah Buku Dibaca</div>
+            </div>
         </section>
 
         <section class="services-section" id="layanan">
@@ -190,6 +194,33 @@
                 </article>
             </div>
         </section>
+
+        <section class="gallery-section" id="lensa">
+            <h2 class="section-title">Lensa Kegiatan</h2>
+            <div class="gallery-grid">
+                @foreach ($lensaKegiatan as $kegiatan)
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="{{ asset('storage/' . $kegiatan->foto) }}" alt="{{ $kegiatan->keterangan }}">
+                        <div class="gallery-overlay-hover">
+                            <i class="fas fa-search-plus"></i>
+                            <span class="gallery-caption">{{ $kegiatan->keterangan }}</span>
+                            <span style="color: #ddd; font-size: 0.8rem; margin-top:5px;">
+                                {{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d M Y') }}
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="gallery-footer">
+                <a href="#" class="btn-outline">More</a>
+            </div>
+        </section>
+
+        <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-content" id="lightbox-img" src="">
+        </div>
     </main>
 
     <footer class="footer" id="kontak">
@@ -246,31 +277,34 @@
 
     <script>
         // Smooth scrolling untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                    });
-                }
-            });
-        });
+        // document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        //     anchor.addEventListener("click", function(e) {
+        //         e.preventDefault();
+        //         const target = document.querySelector(this.getAttribute("href"));
+        //         if (target) {
+        //             target.scrollIntoView({
+        //                 behavior: "smooth",
+        //                 block: "start",
+        //             });
+        //         }
+        //     });
+        // });
 
         // Animasi counter untuk statistik
         function animateCounter(element, target) {
             let current = 0;
-            const increment = target / 100;
+            // Jika target kecil (seperti 35), increment 1 agar tidak macet
+            const increment = target > 100 ? target / 100 : 1;
+
             const timer = setInterval(() => {
                 current += increment;
-                element.textContent = Math.floor(current).toLocaleString("id-ID");
+                // Pastikan tidak melebihi target
                 if (current >= target) {
-                    element.textContent = target.toLocaleString("id-ID");
+                    current = target;
                     clearInterval(timer);
                 }
-            }, 20);
+                element.textContent = Math.floor(current).toLocaleString("id-ID");
+            }, 20); // Kecepatan animasi
         }
 
         // Intersection Observer untuk animasi
@@ -278,9 +312,14 @@
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const statNumbers = entry.target.querySelectorAll(".stat-number");
-                    const targets = [15450, 8230, 2150];
+                    // UPDATE: Tambahkan angka 35 ke dalam array targets
+                    const targets = [15450, 8230, 2150, 35];
+
                     statNumbers.forEach((num, index) => {
-                        animateCounter(num, targets[index]);
+                        // Cek agar index tidak error jika HTML bertambah
+                        if (targets[index] !== undefined) {
+                            animateCounter(num, targets[index]);
+                        }
                     });
                     observer.unobserve(entry.target);
                 }
@@ -306,14 +345,55 @@
         });
 
         // This is the corrected JavaScript logic for the hamburger menu
+        // LOGIKA HAMBURGER MENU & AUTO CLOSE
         const hamburger = document.getElementById("hamburger");
         const navMenu = document.querySelector(".nav-menu");
+        const navLinks = document.querySelectorAll(".nav-menu a");
 
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-            hamburger.classList.toggle("active"); // Added this line to apply the 'active' class to the hamburger
-        });
-        // The 'toggleMenu' function is no longer needed since the event listener handles the logic
+        if (hamburger && navMenu) {
+            // 1. Toggle Menu saat Hamburger diklik
+            hamburger.addEventListener("click", () => {
+                navMenu.classList.toggle("active");
+                hamburger.classList.toggle("active");
+            });
+
+            // 2. Tutup Menu saat salah satu link diklik
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    // Hapus class active agar menu menutup
+                    navMenu.classList.remove("active");
+                    hamburger.classList.remove("active");
+                });
+            });
+
+            // 3. (Opsional) Tutup menu jika klik di luar menu (body)
+            document.addEventListener("click", (e) => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove("active");
+                    hamburger.classList.remove("active");
+                }
+            });
+        }
+
+        /* ================== SCRIPT TAMBAHAN UNTUK LIGHTBOX ================== */
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const imgSource = element.querySelector('img').src;
+
+            lightboxImg.src = imgSource;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Mencegah scroll saat lightbox buka
+        }
+
+        function closeLightbox(event) {
+            // Tutup jika klik pada background (overlay) atau tombol close
+            if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Mengembalikan scroll
+            }
+        }
     </script>
 </body>
 

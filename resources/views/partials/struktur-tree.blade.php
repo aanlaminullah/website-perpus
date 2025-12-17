@@ -2,7 +2,7 @@
     @foreach ($struktur as $node)
         <li>
             <div class="node-box">
-                <i class="fas fa-user"></i>
+                {{-- <i class="fas fa-user"></i> --}}
                 <div class="node-content">
                     <strong class="jabatan">{{ $node->jabatan }}</strong>
                     <span class="nama">{{ $node->nama }}</span>

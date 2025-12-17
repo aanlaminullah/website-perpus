@@ -7,6 +7,7 @@ use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\TugasFungsiController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\LensaKegiatanController;
 
 // Landing page
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -48,6 +49,9 @@ Route::middleware(['auth.check'])->group(function () {
     Route::delete('/dashboard/struktur/{id}', [StrukturController::class, 'destroy'])->name('struktur.destroy');
     Route::post('/dashboard/struktur', [StrukturController::class, 'store'])->name('struktur.store');
     Route::put('/dashboard/struktur/{struktur}', [StrukturController::class, 'update'])->name('struktur.update');
+
+    // Lensa Kegiatan
+    Route::resource('lensa', LensaKegiatanController::class);
 
     // Ganti Password
     Route::get('/dashboard/ganti-password', [AuthenticationController::class, 'showChangePassword'])->name('password.edit');

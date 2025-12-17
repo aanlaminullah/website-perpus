@@ -14,7 +14,7 @@
         <ul>
             <li class="{{ Request::routeIs('dashboard') ? 'active' : '' }}">
                 <a href="/dashboard">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                    <i class="fas fa-tachometer-alt"></i> Statistik
                 </a>
             </li>
             <li class="{{ Request::routeIs('buku.*') ? 'active' : '' }}">
@@ -25,7 +25,7 @@
             <li
                 class="dropdown {{ Request::routeIs('visimisi.index') || Request::routeIs('tugasfungsi.index') || Request::routeIs('struktur.index') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="dropdown-toggle">
-                    <i class="fas fa-edit"></i> Edit
+                    <i class="fas fa-edit"></i> Profil
                 </a>
                 <ul class="submenu">
                     <li class="{{ Request::routeIs('visimisi.index') ? 'active' : '' }}">
@@ -38,6 +38,11 @@
                         <a href="{{ route('struktur.index') }}">Struktur Organisasi</a>
                     </li>
                 </ul>
+            </li>
+            <li class="{{ Request::routeIs('lensa.*') ? 'active' : '' }}">
+                <a href="{{ route('lensa.index') }}">
+                    <i class="fas fa-camera"></i> Lensa Kegiatan
+                </a>
             </li>
 
             <li class="dropdown {{ Request::routeIs('password.edit') ? 'active' : '' }}">

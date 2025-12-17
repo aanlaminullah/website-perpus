@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* Ini adalah fungsi gulir halus bawaan CSS */
+}
+
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -219,7 +223,7 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-top: -50px;
     position: relative;
@@ -658,7 +662,7 @@ body {
     margin-bottom: 0;
     line-height: 1.4;
     word-wrap: break-word;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .node-content .nama {
@@ -1354,13 +1358,15 @@ body.admin-dashboard {
         display: none;
         flex-direction: column;
         background: #2c3e50;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 85px;
         left: 0;
+        right: -100%;
         width: 100%;
         padding: 10px 0;
         text-align: center;
         border-top: 1px solid rgba(255, 255, 255, 0.2);
+        transition: 0.3s;
     }
 
     .nav-menu a {
@@ -1376,6 +1382,20 @@ body.admin-dashboard {
     .nav-menu.active {
         display: flex;
         animation: slideDown 0.3s ease;
+    }
+
+    /* Atur posisi menu saat header MENYUSUT (.shrink) */
+    .header.shrink .nav-menu {
+        top: 60px; /* Sesuaikan dengan tinggi header saat shrink */
+    }
+
+    /* Opsional: Sesuaikan ukuran logo/teks di mobile saat shrink agar rapi */
+    .header.shrink .logo {
+        width: 35px; /* Lebih kecil sedikit dari desktop */
+    }
+
+    .header.shrink .site-title {
+        font-size: 16px;
     }
 
     @keyframes slideDown {
@@ -1471,7 +1491,7 @@ body.admin-dashboard {
     }
 
     .node-content .jabatan {
-        font-size: 14px; /* Perbesar teks jabatan */
+        font-size: 13px; /* Perbesar teks jabatan */
         margin-bottom: 3px;
         line-height: 1.4;
     }
@@ -1594,6 +1614,196 @@ body.admin-dashboard {
 
     .login-header h2 {
         font-size: 24px;
+    }
+}
+
+/* ================== LENSA KEGIATAN (GALLERY) ================== */
+.gallery-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.gallery-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    flex: 0 0 calc((100% - 60px) / 4);
+    max-width: calc((100% - 60px) / 4);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    gap: 15px;
+}
+
+.gallery-item:hover .gallery-overlay-hover {
+    opacity: 1;
+}
+
+.gallery-overlay-hover i {
+    color: #3498db; /* Ubah warna ikon jadi biru agar kontras */
+    font-size: 2rem;
+    transform: translateY(20px); /* Posisi awal agak di bawah */
+    transition: all 0.3s ease;
+}
+
+.gallery-caption {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 20px;
+    transform: translateY(20px); /* Posisi awal agak di bawah */
+    transition: all 0.4s ease; /* Sedikit lebih lambat dari overlay */
+}
+
+/* Tombol More */
+.gallery-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.gallery-item:hover .gallery-overlay-hover {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-overlay-hover i,
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #3498db;
+    color: #3498db;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* LIGHTBOX (PREVIEW) STYLES */
+.lightbox {
+    position: fixed;
+    z-index: 2000; /* Di atas segalanya */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lightbox-close:hover {
+    color: #3498db;
+}
+
+/* Responsif Galeri Mobile */
+@media (max-width: 768px) {
+    .gallery-grid {
+        /* Tidak perlu mendefinisikan grid-template-columns lagi */
+        gap: 15px; /* Sedikit perkecil gap di mobile */
+    }
+    .gallery-item {
+        height: 150px;
+        /* HITUNGAN AGAR MUAT 2 KOLOM DI HP */
+        /* (100% lebar - 1 gap 15px) dibagi 2 item */
+        flex: 0 0 calc((100% - 15px) / 2);
+        max-width: calc((100% - 15px) / 2);
+    }
+}
+
+/* ================== STATS EDIT PAGE ================== */
+.stats-edit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom */
+    gap: 30px;
+}
+
+/* Agar input number terlihat lebih besar dan jelas */
+.stats-edit-grid input[type="number"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 15px;
+}
+
+/* Responsif untuk Mobile: Jadi 1 kolom */
+@media (max-width: 768px) {
+    .stats-edit-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 
