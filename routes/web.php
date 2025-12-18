@@ -5,10 +5,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\VisiMisiController;
-use App\Http\Controllers\TugasFungsiController;
-use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\LensaKegiatanController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LandingStatController;
+use App\Http\Controllers\TugasFungsiController;
+use App\Http\Controllers\LensaKegiatanController;
+use App\Http\Controllers\AuthenticationController;
 
 // Landing page
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -56,6 +57,13 @@ Route::middleware(['auth.check'])->group(function () {
     // Ganti Password
     Route::get('/dashboard/ganti-password', [AuthenticationController::class, 'showChangePassword'])->name('password.edit');
     Route::put('/dashboard/ganti-password', [AuthenticationController::class, 'updatePassword'])->name('password.update');
+
+    // Route khusus Manajemen User (Hanya Admin)
+    Route::prefix('admin/users')->name('admin.users.')->group(function () {
+        Route::get('/', [AdminUserController::class, 'index'])->name('index');
+        Route::get('/{user}/edit', [AdminUserController::class, 'edit'])->name('edit');
+        Route::put('/{user}/update', [AdminUserController::class, 'updatePassword'])->name('update');
+    });
 
     // Logout
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');

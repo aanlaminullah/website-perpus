@@ -6,7 +6,7 @@
                 </div>
                 <div>
                     <div class="site-title">Dinas Kearsipan dan Perpustakaan</div>
-                    <div class="tagline">Pelayanan Informasi dan Dokumentasi Terpadu</div>
+                    <div class="tagline">Kabupaten Bolaang Mongondow Utara</div>
                 </div>
             </div>
             <nav class="nav-menu">

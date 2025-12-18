@@ -105,8 +105,61 @@
 
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pilih semua form yang ada di halaman
+            const forms = document.querySelectorAll('form');
+
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    // Cek validasi HTML5 dulu (misal: attribute required)
+                    if (!this.checkValidity()) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Biarkan browser menampilkan pesan error bawaan
+                        return;
+                    }
+
+                    // Abaikan form logout (karena sudah ada confirm sendiri)
+                    if (this.getAttribute('id') === 'logout-form') {
+                        return;
+                    }
+
+                    // Cari tombol submit di dalam form
+                    const submitBtn = this.querySelector('button[type="submit"]');
+
+                    // 1. Tampilkan SweetAlert Loading
+                    Swal.fire({
+                        title: 'Mohon Tunggu',
+                        text: 'Sedang memproses data...',
+                        // Memanggil gambar dari folder public proyek sendiri
+                        imageUrl: "{{ asset('/spinner.gif') }}",
+                        imageWidth: 100,
+                        imageHeight: 100,
+                        allowOutsideClick: false,
+                        showConfirmButton: false
+                    });
+
+                    // 2. Ubah tampilan tombol submit (Visual Feedback di tombol)
+                    if (submitBtn) {
+                        // Simpan teks asli
+                        const originalText = submitBtn.innerHTML;
+                        // Ubah jadi disabled dan loading
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+
+                        // Kembalikan tombol jika user menekan Back browser (opsional/safety net)
+                        setTimeout(() => {
+                            // Script ini berjalan sampai halaman reload/pindah.
+                            // Jika validasi server gagal dan kembali ke halaman ini, halaman akan refresh otomatis
+                        }, 5000);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

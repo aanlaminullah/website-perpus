@@ -66,6 +66,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function togglePassword() {
+            // ... (kode toggle password yang sudah ada) ...
+        }
+
+        // TAMBAHKAN SCRIPT LOADING INI
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            const btn = this.querySelector('button[type="submit"]');
+
+            // Tampilkan Loading
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Masuk...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btn.style.cursor = 'not-allowed';
+
+            // Opsional: Tampilkan SweetAlert juga
+            Swal.fire({
+                title: 'Sedang Masuk',
+                text: 'Memverifikasi akun Anda...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        });
+    </script>
     <script>
         function togglePassword() {
             const passwordInput = document.getElementById('password');

@@ -996,8 +996,11 @@ body.admin-dashboard {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    padding: 0.75rem 1rem;
+
+    /* UBAH BAGIAN INI */
+    width: auto; /* Ubah dari 100% menjadi auto agar lebar mengikuti teks */
+    padding: 0.5rem 1.5rem; /* Kurangi padding atas-bawah agar tidak terlalu tebal */
+
     background-color: #e74c3c;
     color: white;
     border: none;
@@ -1006,6 +1009,9 @@ body.admin-dashboard {
     font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.3s ease;
+
+    /* Tambahkan margin auto jika ingin tombol di tengah container */
+    margin: 0 auto;
 }
 
 .logout-button:hover {

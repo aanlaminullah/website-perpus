@@ -45,6 +45,14 @@
                 </a>
             </li>
 
+            @if (auth()->check() && auth()->user()->role === 'admin')
+                <li class="{{ Request::routeIs('admin.users.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.users.index') }}">
+                        <i class="fas fa-users-cog"></i> Edit User
+                    </a>
+                </li>
+            @endif
+
             <li class="dropdown {{ Request::routeIs('password.edit') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="dropdown-toggle">
                     <i class="fa-solid fa-gear"></i> Pengaturan
@@ -61,12 +69,40 @@
 
         </ul>
     </nav>
-    <div class="sidebar-footer">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="logout-button">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </form>
+    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+        @csrf
+        <button type="button" class="logout-button" id="btn-logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnLogout = document.getElementById('btn-logout');
+
+            if (btnLogout) {
+                btnLogout.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Yakin ingin keluar?',
+                        text: "Sesi Anda akan berakhir!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true // Opsional: menukar posisi tombol
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Jika user klik "Ya", submit form secara manual
+                            document.getElementById('logout-form').submit();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
     </div>
 </aside>
