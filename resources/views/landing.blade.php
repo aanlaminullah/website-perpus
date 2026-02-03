@@ -200,7 +200,9 @@
             <h2 class="section-title">Lensa Kegiatan</h2>
             <div class="gallery-grid">
                 @foreach ($lensaKegiatan as $kegiatan)
-                    <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-item" onclick="openLightbox(this)" 
+                        data-keterangan="{{ $kegiatan->keterangan }}"
+                        data-tanggal="{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d M Y') }}">
                         <img src="{{ asset('storage/' . $kegiatan->foto) }}" alt="{{ $kegiatan->keterangan }}">
                         <div class="gallery-overlay-hover">
                             <i class="fas fa-search-plus"></i>
@@ -214,13 +216,19 @@
             </div>
 
             <div class="gallery-footer">
-                <a href="#" class="btn-outline">More</a>
+                <a href="{{ route('lensa.galeri') }}" class="btn-outline">More</a>
             </div>
         </section>
 
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
             <span class="lightbox-close">&times;</span>
-            <img class="lightbox-content" id="lightbox-img" src="">
+            <div class="lightbox-container">
+                <img class="lightbox-content" id="lightbox-img" src="">
+                <div class="lightbox-details">
+                    <p id="lightbox-desc"></p>
+                    <span id="lightbox-date"></span>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -269,8 +277,7 @@
         </div>
         <div class="footer-bottom">
             <p>
-                &copy; 2024 Dinas Kearsipan dan Perpustakaan Kabupaten Bolaang Mongondow Utara. All
-                Rights Reserved.
+                &copy; 2025 Dinas Komunikasi Informatika dan Persandian Bolaang Mongondow Utara
             </p>
         </div>
     </footer>
@@ -380,9 +387,17 @@
         function openLightbox(element) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxDesc = document.getElementById('lightbox-desc');
+            const lightboxDate = document.getElementById('lightbox-date');
+            
             const imgSource = element.querySelector('img').src;
+            const keterangan = element.getAttribute('data-keterangan');
+            const tanggal = element.getAttribute('data-tanggal');
 
             lightboxImg.src = imgSource;
+            lightboxDesc.textContent = keterangan;
+            lightboxDate.textContent = tanggal;
+            
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden'; // Mencegah scroll saat lightbox buka
         }

@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthenticationController;
 
 // Landing page
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/lensa-kegiatan', [LensaKegiatanController::class, 'galeri'])->name('lensa.galeri');
 
 // Authentication routes
 Route::middleware(['guest.only'])->group(function () {

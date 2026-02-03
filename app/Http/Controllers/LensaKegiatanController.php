@@ -15,6 +15,13 @@ class LensaKegiatanController extends Controller
         return view('lensa.index', compact('lensa'));
     }
 
+    public function galeri()
+    {
+        // Mengambil semua data lensa kegiatan, diurutkan dari yang terbaru
+        $lensa = LensaKegiatan::orderBy('tanggal', 'desc')->get();
+        return view('lensa.galeri', compact('lensa'));
+    }
+
     public function create()
     {
         return view('lensa.create');
