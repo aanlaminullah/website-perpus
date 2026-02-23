@@ -71,7 +71,6 @@ Route::middleware(['auth.check'])->group(function () {
 });
 
 Route::get('/sitemap.xml', function () {
-    // Ambil data dari database jika perlu
     $lensa = \App\Models\LensaKegiatan::all();
 
     return response()->view('sitemap', [
