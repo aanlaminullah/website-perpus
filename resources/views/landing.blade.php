@@ -4,12 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dinas Kearsipan dan Perpustakaan</title>
+
+    <title>Dinas Kearsipan dan Perpustakaan | Kabupaten Boltara</title>
+
+    <meta name="description"
+        content="Website resmi Dinas Kearsipan dan Perpustakaan Kabupaten Boltara. Layanan digital pengelolaan arsip, dokumentasi sejarah, dan perpustakaan umum.">
+
+    <meta name="keywords"
+        content="perpustakaan digital, kearsipan boltara, baca buku online, dokumentasi sejarah, dinas kearsipan">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dinas Kearsipan dan Perpustakaan | Kabupaten Boltara">
+    <meta property="og:description"
+        content="Sistem Informasi Kearsipan dan Perpustakaan Digital untuk kemudahan akses informasi publik.">
+    <meta property="og:image" content="{{ asset('logo-pemda.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="icon" href="logo-pemda.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-
+    <meta name="google-site-verification"
+        content="google-site-verification=6a18oiKDdZaLAFLnyUBwwLC7NjfSWvBiNeQpBczCWag" />
 </head>
 
 
@@ -200,7 +218,7 @@
             <h2 class="section-title">Lensa Kegiatan</h2>
             <div class="gallery-grid">
                 @foreach ($lensaKegiatan as $kegiatan)
-                    <div class="gallery-item" onclick="openLightbox(this)" 
+                    <div class="gallery-item" onclick="openLightbox(this)"
                         data-keterangan="{{ $kegiatan->keterangan }}"
                         data-tanggal="{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d M Y') }}">
                         <img src="{{ asset('storage/' . $kegiatan->foto) }}" alt="{{ $kegiatan->keterangan }}">
@@ -389,7 +407,7 @@
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxDesc = document.getElementById('lightbox-desc');
             const lightboxDate = document.getElementById('lightbox-date');
-            
+
             const imgSource = element.querySelector('img').src;
             const keterangan = element.getAttribute('data-keterangan');
             const tanggal = element.getAttribute('data-tanggal');
@@ -397,7 +415,7 @@
             lightboxImg.src = imgSource;
             lightboxDesc.textContent = keterangan;
             lightboxDate.textContent = tanggal;
-            
+
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden'; // Mencegah scroll saat lightbox buka
         }

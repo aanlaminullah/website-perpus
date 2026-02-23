@@ -4,12 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="icon" href="{{ asset('logo-pemda.png') }}" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+    <title>@yield('title', 'Dinas Kearsipan dan Perpustakaan') | Kabupaten Boltara</title>
+
+    <meta name="description" content="@yield('meta_description', 'Layanan resmi Dinas Kearsipan dan Perpustakaan Kabupaten Boltara. Temukan koleksi buku, dokumen sejarah, dan lensa kegiatan terbaru.')">
+    <meta name="keywords" content="perpustakaan, kearsipan, boltara, buku, dinas perpustakaan, lensa kegiatan">
+    <meta name="author" content="Dinas Kearsipan dan Perpustakaan Boltara">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title') | Dinas Perpustakaan">
+    <meta property="og:description" content="@yield('meta_description')">
+    <meta property="og:image" content="{{ asset('logo-pemda.png') }}">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title')">
+    <meta property="twitter:description" content="@yield('meta_description')">
+    <meta property="twitter:image" content="{{ asset('logo-pemda.png') }}">
+
+    <link rel="icon" href="{{ asset('logo-pemda.png') }}" type="image/png">
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <meta name="google-site-verification"
+        content="google-site-verification=6a18oiKDdZaLAFLnyUBwwLC7NjfSWvBiNeQpBczCWag" />
 </head>
 
 <body class="admin-dashboard">

@@ -33,7 +33,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $item->foto) }}" alt="Foto"
-                                    style="width: 100px; border-radius: 5px;">
+                                    style="width: 100px; border-radius: 5px;" loading="lazy">
                             </td>
                             <td>{{ $item->keterangan }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>

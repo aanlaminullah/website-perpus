@@ -4,7 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Lensa Kegiatan - Perpustakaan Modern</title>
+
+    <title>Galeri Lensa Kegiatan | Dinas Kearsipan dan Perpustakaan Boltara</title>
+
+    <meta name="description"
+        content="Kumpulan dokumentasi foto kegiatan terbaru Dinas Kearsipan dan Perpustakaan Kabupaten Boltara. Lihat momen kegiatan literasi, arsip daerah, dan event perpustakaan kami.">
+
+    <meta name="keywords"
+        content="galeri foto perpustakaan, kegiatan dinas kearsipan, dokumentasi perpustakaan boltara, lensa kegiatan">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Galeri Lensa Kegiatan - Perpustakaan Boltara">
+    <meta property="og:description"
+        content="Dokumentasi visual berbagai kegiatan literasi dan kearsipan di Kabupaten Boltara.">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('logo-pemda.png') }}">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
@@ -160,21 +177,23 @@
         </div>
     </footer>
 
- <div id="lightbox"
-    class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col items-center justify-center p-4 transition-all duration-300 transform opacity-0">
-        
-        <div class="relative w-full max-w-4xl bg-white rounded-xl overflow-hidden flex flex-col shadow-2xl animate-[zoomIn_0.3s_ease]">
-             <!-- Close Button -->
-             <button onclick="closeLightbox()"
-             class="absolute top-4 right-4 z-10 text-white bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
-             <i class="fas fa-times"></i>
-         </button>
+    <div id="lightbox"
+        class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col items-center justify-center p-4 transition-all duration-300 transform opacity-0">
+
+        <div
+            class="relative w-full max-w-4xl bg-white rounded-xl overflow-hidden flex flex-col shadow-2xl animate-[zoomIn_0.3s_ease]">
+            <!-- Close Button -->
+            <button onclick="closeLightbox()"
+                class="absolute top-4 right-4 z-10 text-white bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
 
             <!-- Image Container -->
-<div class="w-full bg-black flex items-center justify-center h-auto max-h-[75vh]">
-    <img id="lightbox-img" src="" class="w-full h-full max-h-[75vh] object-contain object-center block">
-</div>
-            
+            <div class="w-full bg-black flex items-center justify-center h-auto max-h-[75vh]">
+                <img id="lightbox-img" src=""
+                    class="w-full h-full max-h-[75vh] object-contain object-center block">
+            </div>
+
             <!-- Details Container -->
             <div class="p-6 text-center border-t border-slate-100">
                 <h2 id="lightbox-caption" class="text-xl font-bold text-slate-800 mb-2"></h2>
@@ -199,15 +218,15 @@
             setTimeout(() => {
                 lightbox.classList.remove('opacity-0');
             }, 10);
-            
+
             document.body.style.overflow = 'hidden'; // Stop scroll
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
-            
+
             lightbox.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 lightbox.classList.add('hidden');
                 document.body.style.overflow = 'auto'; // Resume scroll

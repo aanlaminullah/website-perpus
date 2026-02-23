@@ -1,2 +1,12 @@
 User-agent: *
-Disallow:
+Allow: /
+Allow: /lensa-kegiatan
+
+# Larang Google mengindeks halaman login dan sistem internal
+Disallow: /login
+Disallow: /logout
+Disallow: /dashboard/
+Disallow: /admin/
+
+# Link ke Sitemap (pastikan sitemap sudah di-generate)
+Sitemap: https://diarpus.a-pksti.my.id/sitemap.xml
