@@ -69,3 +69,12 @@ Route::middleware(['auth.check'])->group(function () {
     // Logout
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
+
+Route::get('/sitemap.xml', function () {
+    // Ambil data dari database jika perlu
+    $lensa = \App\Models\LensaKegiatan::all();
+
+    return response()->view('sitemap', [
+        'lensa' => $lensa,
+    ])->header('Content-Type', 'text/xml');
+});
